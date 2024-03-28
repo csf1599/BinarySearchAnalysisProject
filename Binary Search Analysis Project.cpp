@@ -1,20 +1,50 @@
-// Binary Search Analysis Project.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+int recursiveBinarySearch(const vector<int>& arr, int target, int left, int right) {
+    if (left > right)
+        return -1;
+    int mid = left + (right - left) / 2;
+    if (arr[mid] == target)
+        return mid;
+    if (arr[mid] > target)
+        return recursiveBinarySearch(arr, target, left, mid - 1);
+    else
+        return recursiveBinarySearch(arr, target, mid + 1, right);
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+void printVector(const vector<int>& arr) {
+    cout << "Vector contents: ";
+    for (int i = 0; i < arr.size(); ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+int main() {
+    vector<int> arr = { 4, 2, 6, 8, 1, 10, 7, 9, 5 };
+    sort(arr.begin(), arr.end());
+    printVector(arr);
+    int target1 = 4;
+    int target2 = 12;
+    cout << "Recursive Binary Search" << endl;
+    int index = recursiveBinarySearch(arr, target1, 0, arr.size() - 1);
+    cout << target1;
+    if (index != -1) {
+        cout << " found at location " << index + 1;
+    }
+    else {
+        cout << " was not found.";
+    }
+    cout << endl;
+    index = recursiveBinarySearch(arr, target2, 0, arr.size() - 1);
+    cout << target2;
+    if (index != -1) {
+        cout << " found at location " << index + 1;
+    }
+    else {
+        cout << " was not found.";
+    }
+    cout << endl;
+	return 0;
+}
