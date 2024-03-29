@@ -67,23 +67,13 @@ int main() {
     }
     sort(arr.begin(), arr.end());
     printVector(arr);
-    int target1 = 4;
-    int target2 = 12;
+    int target1 = rnumGen();
 
     // recursive test code
 
     cout << "Recursive Binary Search" << endl;
     int index = recursiveBinarySearch(arr, target1, 0, arr.size() - 1);
     cout << target1;
-    if (index != -1) {
-        cout << " found at location " << index + 1;
-    }
-    else {
-        cout << " was not found.";
-    }
-    cout << endl;
-    index = recursiveBinarySearch(arr, target2, 0, arr.size() - 1);
-    cout << target2;
     if (index != -1) {
         cout << " found at location " << index + 1;
     }
@@ -104,16 +94,7 @@ int main() {
         cout << " was not found.";
     }
     cout << endl;
-    int h = iterativeBinarySearch(arr, target2);
-    cout << target2;
-    if (h != -1) {
-        cout << " found at location " << h + 1;
-    }
-    else {
-        cout << " was not found.";
-    }
-    cout << endl;
-
+ 
     // sequential test code
 
     cout << "sequential search test" << endl;
@@ -126,16 +107,7 @@ int main() {
         cout << " was not found.";
     }
     cout << endl;
-    int g = sequentialSearch(arr, target2);
-    cout << target2;
-    if (g != -1) {
-        cout << " found at location " << g + 1;
-    }
-    else {
-        cout << " was not found.";
-    }
-    cout << endl;
-
+ 
 
 	return 0;
 }
