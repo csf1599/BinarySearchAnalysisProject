@@ -60,7 +60,7 @@ int rnumGen() {
     return rnum;
 }
 int main() {
-    int N = 5000;
+    int N = 1000000;
     double sumRBS = 0.00;
     double sumIBS = 0.00;
     double sumSeqS = 0.00;
