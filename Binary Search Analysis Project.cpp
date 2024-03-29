@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <random>
 
 using namespace std;
 int recursiveBinarySearch(const vector<int>& arr, int target, int left, int right) {
@@ -50,6 +51,14 @@ void printVector(const vector<int>& arr) {
         cout << arr[i] << " ";
     }
     cout << endl;
+}
+int rnumGen(int range) {
+    mt19937 rng(random_device());
+    uniform_int_distribution<int> distribution(1, 100);
+    for (int i = 0; i < range; i++) {
+        int rnum = distribution(rng);
+        return rnum;
+    }
 }
 int main() {
     vector<int> arr = { 4, 2, 6, 8, 1, 10, 7, 9, 5 };
@@ -123,6 +132,7 @@ int main() {
         cout << " was not found.";
     }
     cout << endl;
-    cout << "version control test";
+    cout << rnumGen(5) << endl;
+
 	return 0;
 }
