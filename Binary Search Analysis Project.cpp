@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 using namespace std;
 int recursiveBinarySearch(const vector<int>& arr, int target, int left, int right) {
@@ -59,55 +60,38 @@ int rnumGen() {
     return rnum;
 }
 int main() {
-    vector<int> arr = {};
-    for (int p = 0; p < 10; p++) {
-        int rnum = rnumGen();
-        arr.push_back(rnum);
+    int N = 15000;
+    double sumRBS = 0.0;
+    double sumIBS = 0.0;
+    double sumSeqS = 0.0;
+    for (int i = 0; i < 10; i++) {
+        vector<int> arr = {};
+        for (int p = 0; p < N; p++) {
+            int rnum = rnumGen();
+            arr.push_back(rnum);
+
+        }
+        sort(arr.begin(), arr.end());
+        int target = rnumGen();
+
+        // time test for RBS
+        auto start = chrono::high_resolution_clock::now();
+        recursiveBinarySearch(arr, target, 0, arr.size() - 1);
+        auto stop = chrono::high_resolution_clock::now();
+        auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+        sumRBS = sumRBS + static_cast<double>(duration.count());
+
+        // time test for IBS
+        auto start2 = chrono::high_resolution_clock::now();
+        iterativeBinarySearch(arr, target);
+        auto stop2 = chrono::high_resolution_clock::now();
+        auto duration2 = chrono::duration_cast<chrono::microseconds>(stop2 - start2);
+        sumIBS = sumIBS + static_cast<double>(duration2.count());
 
     }
-    sort(arr.begin(), arr.end());
-    printVector(arr);
-    int target1 = rnumGen();
+    cout << "The average time for Recursive Search is : " << sumRBS / 10 << " micro-seconds. " << endl;
+    cout << "The average time for Iterative Search is : " << sumIBS / 10 << " micro-seconds. " << endl;
 
-    // recursive test code
-
-    cout << "Recursive Binary Search" << endl;
-    int index = recursiveBinarySearch(arr, target1, 0, arr.size() - 1);
-    cout << target1;
-    if (index != -1) {
-        cout << " found at location " << index + 1;
-    }
-    else {
-        cout << " was not found.";
-    }
-    cout << endl;
-
-    // iterative test code
-
-    cout << "iterative search test" << endl;
-    int j = iterativeBinarySearch(arr, target1);
-    cout << target1;
-    if (j != -1) {
-        cout << " found at location " << j + 1; 
-    }
-    else {
-        cout << " was not found.";
-    }
-    cout << endl;
- 
-    // sequential test code
-
-    cout << "sequential search test" << endl;
-    int f = sequentialSearch(arr, target1);
-    cout << target1;
-    if (f != -1) {
-        cout << " found at location " << f + 1;
-    }
-    else {
-        cout << " was not found.";
-    }
-    cout << endl;
- 
 
 	return 0;
 }
