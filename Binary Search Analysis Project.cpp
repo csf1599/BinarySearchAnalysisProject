@@ -52,13 +52,11 @@ void printVector(const vector<int>& arr) {
     }
     cout << endl;
 }
-int rnumGen(int range) {
-    mt19937 rng(random_device());
+int rnumGen() {
+    mt19937 rng(_Random_device());
     uniform_int_distribution<int> distribution(1, 100);
-    for (int i = 0; i < range; i++) {
-        int rnum = distribution(rng);
-        return rnum;
-    }
+    int rnum = distribution(rng);
+    return rnum;
 }
 int main() {
     vector<int> arr = { 4, 2, 6, 8, 1, 10, 7, 9, 5 };
@@ -132,7 +130,10 @@ int main() {
         cout << " was not found.";
     }
     cout << endl;
-    cout << rnumGen(5) << endl;
+    for (int q = 0; q < 5; q++) {
+        cout << rnumGen() << endl;
+    }
+
 
 	return 0;
 }
