@@ -59,7 +59,12 @@ int rnumGen() {
     return rnum;
 }
 int main() {
-    vector<int> arr = { 4, 2, 6, 8, 1, 10, 7, 9, 5 };
+    vector<int> arr = {};
+    for (int p = 0; p < 10; p++) {
+        int rnum = rnumGen();
+        arr.push_back(rnum);
+
+    }
     sort(arr.begin(), arr.end());
     printVector(arr);
     int target1 = 4;
@@ -130,9 +135,6 @@ int main() {
         cout << " was not found.";
     }
     cout << endl;
-    for (int q = 0; q < 5; q++) {
-        cout << rnumGen() << endl;
-    }
 
 
 	return 0;
