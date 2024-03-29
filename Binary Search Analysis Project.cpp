@@ -60,10 +60,10 @@ int rnumGen() {
     return rnum;
 }
 int main() {
-    int N = 15000;
-    double sumRBS = 0.0;
-    double sumIBS = 0.0;
-    double sumSeqS = 0.0;
+    int N = 5000;
+    double sumRBS = 0.00;
+    double sumIBS = 0.00;
+    double sumSeqS = 0.00;
     for (int i = 0; i < 10; i++) {
         vector<int> arr = {};
         for (int p = 0; p < N; p++) {
@@ -73,7 +73,6 @@ int main() {
         }
         sort(arr.begin(), arr.end());
         int target = rnumGen();
-
         // time test for RBS
         auto start = chrono::high_resolution_clock::now();
         recursiveBinarySearch(arr, target, 0, arr.size() - 1);
@@ -88,9 +87,16 @@ int main() {
         auto duration2 = chrono::duration_cast<chrono::microseconds>(stop2 - start2);
         sumIBS = sumIBS + static_cast<double>(duration2.count());
 
+        // time test for SeqS
+        auto start3 = chrono::high_resolution_clock::now();
+        sequentialSearch(arr, target);
+        auto stop3 = chrono::high_resolution_clock::now();
+        auto duration3 = chrono::duration_cast<chrono::microseconds>(stop3 - start3);
+        sumSeqS = sumSeqS + static_cast<double>(duration2.count());
     }
     cout << "The average time for Recursive Search is : " << sumRBS / 10 << " micro-seconds. " << endl;
     cout << "The average time for Iterative Search is : " << sumIBS / 10 << " micro-seconds. " << endl;
+    cout << "The average time for Sequential Search is : " << sumSeqS / 10 << " micro-seconds" << endl;
 
 
 	return 0;
