@@ -60,7 +60,7 @@ int rnumGen() {
 }
 int main() {
     vector<int> arr = {};
-    for (int p = 0; p < 10; p++) {
+    for (int p = 0; p < 100; p++) {
         int rnum = rnumGen();
         arr.push_back(rnum);
 
