@@ -34,6 +34,16 @@ int iterativeBinarySearch(const vector<int>& arr, int target) {
     }
     return -1;
 }
+int sequentialSearch(const vector<int>& arr, int target) {
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+
+        
+    }
+    return -1;
+}
 void printVector(const vector<int>& arr) {
     cout << "Vector contents: ";
     for (int i = 0; i < arr.size(); ++i) {
@@ -47,6 +57,9 @@ int main() {
     printVector(arr);
     int target1 = 4;
     int target2 = 12;
+
+    // recursive test code
+
     cout << "Recursive Binary Search" << endl;
     int index = recursiveBinarySearch(arr, target1, 0, arr.size() - 1);
     cout << target1;
@@ -66,6 +79,9 @@ int main() {
         cout << " was not found.";
     }
     cout << endl;
+
+    // iterative test code
+
     cout << "iterative search test" << endl;
     int j = iterativeBinarySearch(arr, target1);
     cout << target1;
@@ -76,6 +92,36 @@ int main() {
         cout << " was not found.";
     }
     cout << endl;
-    
+    int h = iterativeBinarySearch(arr, target2);
+    cout << target2;
+    if (h != -1) {
+        cout << " found at location " << h + 1;
+    }
+    else {
+        cout << " was not found.";
+    }
+    cout << endl;
+
+    // sequential test code
+
+    cout << "sequential search test" << endl;
+    int f = sequentialSearch(arr, target1);
+    cout << target1;
+    if (f != -1) {
+        cout << " found at location " << f + 1;
+    }
+    else {
+        cout << " was not found.";
+    }
+    cout << endl;
+    int g = sequentialSearch(arr, target2);
+    cout << target2;
+    if (g != -1) {
+        cout << " found at location " << g + 1;
+    }
+    else {
+        cout << " was not found.";
+    }
+    cout << endl;
 	return 0;
 }
